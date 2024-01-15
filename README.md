@@ -1,8 +1,28 @@
-# React + Vite
+# Pâtisserie
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Object : Faire un jeux de dés permettant de gagner des pâtisserie suivant les combinaisons
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Game
+
+- Ajout d’un button,
+- fonction win
+- fonction loose
+- généré le dés (store game)
+- Faire le front
+
+### Login
+
+- Requet api pour token jwt
+- fait la page,
+- géré le formulaire
+
+### Home
+
+- requetes pour afficher les pâtisseries
+- component affichage,
+
+### contact
+
+- Faire du blablabla
