@@ -1,27 +1,28 @@
-import React, { useEffect } from 'react';
-import { requestPastries } from '../store/pastriesSlices';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useEffect } from "react";
+import { requestPastries } from "../store/pastriesSlices";
+import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
   const dispatch = useDispatch();
-  const { pastries } = useSelector(store => store.pastriesSliceReducer);
+  const { pastries } = useSelector((store) => store.pastriesSliceReducer);
 
-  useEffect(()=> {
-    dispatch(requestPastries())
-  }, [])
+  useEffect(() => {
+    dispatch(requestPastries());
+  }, []);
   return (
-    <>     
-
+    <>
       <h1>Home</h1>
-      
-      <ul>
-        {pastries.length>0 && pastries.map((pastrie, index)=><li key={index}>{pastrie.name}</li>)}
-      </ul>
 
+      <ul>
+        {pastries.length > 0 &&
+          pastries.map((pastrie, index) => (
+            <li key={index}>
+              {pastrie.name} : {pastrie.quantity}
+            </li>
+          ))}
+      </ul>
     </>
-  )
+  );
 }
 
-export default HomePage
-  
+export default HomePage;
