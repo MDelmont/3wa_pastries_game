@@ -8,7 +8,7 @@ import HomePage  from "../pages/home";
 import LoginPage  from "../pages/login";
 import GamePage  from "../pages/game";
 import ContactPage  from "../pages/contact";
-
+import '../styles/header.scss'
 /**
  * creat template of page with nav and content
  * @returns Template of page
