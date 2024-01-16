@@ -13,14 +13,16 @@ function HomePage() {
   }, []);
   return (
     <div className="home-Page">
-      <h1>
-        Tentez de remporter une ou plusieurs patisseries avec notre jeu de yam's
-      </h1>
-      <Link to="http://localhost:5173" >
-        <button>Jouer</button>
-      </Link>
-
-      <div className="pasties-list">
+      <div className="title">
+        <h1>
+          Tentez de remporter une ou plusieurs patisseries avec notre jeu de
+          yam's
+        </h1>
+        <Link to="http://localhost:5173">
+          <button>Jouer</button>
+        </Link>
+      </div>
+      <div className="pastries-list">
         {pastries.length > 0 &&
           pastries.map((pastrie) => (
             <div key={pastrie.id}>
