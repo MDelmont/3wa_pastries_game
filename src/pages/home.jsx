@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { requestPastries } from "../store/pastriesSlices";
 import { useDispatch, useSelector } from "react-redux";
-
+import CardPasties from "../components/cardPastries";
+import { Link } from "react-router-dom";
+import "../styles/home.scss";
 function HomePage() {
   const dispatch = useDispatch();
   const { pastries } = useSelector((store) => store.pastriesSliceReducer);
@@ -10,18 +12,23 @@ function HomePage() {
     dispatch(requestPastries());
   }, []);
   return (
-    <>
-      <h1>Home</h1>
+    <div className="home-Page">
+      <h1>
+        Tentez de remporter une ou plusieurs patisseries avec notre jeu de yam's
+      </h1>
+      <Link to="http://localhost:5173" >
+        <button>Jouer</button>
+      </Link>
 
-      <ul>
+      <div className="pasties-list">
         {pastries.length > 0 &&
-          pastries.map((pastrie, index) => (
-            <li key={index}>
-              {pastrie.name} : {pastrie.quantity}
-            </li>
+          pastries.map((pastrie) => (
+            <div key={pastrie.id}>
+              {CardPasties(pastrie.id, pastrie.name, pastrie.quantity)}
+            </div>
           ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 }
 
