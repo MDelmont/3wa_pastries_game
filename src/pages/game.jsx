@@ -78,14 +78,6 @@ function GamePage() {
     for (let i = 0; i < 5; i++) {
       const diceResult = Math.floor(Math.random() * 6) + 1;
       results.push(diceResult);
-      images.push(
-        <img
-          class="de"
-          key={i}
-          src={`/assets/images/de${i + 1}.jpg`}
-          alt={`Dé ${i + 1}`}
-        />
-      );
     }
     return results;
   };
