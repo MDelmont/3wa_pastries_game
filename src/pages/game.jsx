@@ -10,12 +10,14 @@ function GamePage() {
   const { pastriesWon } = useSelector((store) => store.gameSliceReducer);
   const [diceResults, setDiceResults] = useState(Array(5).fill(1));
   const [remainingAttempts, setRemainingAttempts] = useState(3);
+  const [stateResult, setStateResult] = useState();
 
   const { pastries } = useSelector((store) => store.pastriesSliceReducer);
 
   useEffect(() => {
     dispatch(requestPastries());
   }, [pastriesWon]);
+
   const handleClick = () => {
     const results = throwDices();
     setDiceResults(results);
@@ -23,19 +25,12 @@ function GamePage() {
 
     if (nbPastriesWon != 0) {
       dispatch(requestPastriesWon(nbPastriesWon));
+      setStateResult(true);
     } else {
-      console.log("Vous n'avez rien gagné... Retentez votre chance !");
+      setStateResult(false);
     }
 
     setRemainingAttempts(remainingAttempts - 1);
-
-    if (remainingAttempts === 1) {
-      console.log("Dernier essai !");
-    }
-
-    if (remainingAttempts === 0) {
-      console.log("Fin des essais. Désactivez le bouton ici.");
-    }
   };
 
   const checkVictory = (results) => {
@@ -81,6 +76,25 @@ function GamePage() {
     );
   };
 
+  const printResultState = () => {
+    if (pastriesWon.length > 0 && stateResult) {
+      return (
+        <div>
+          <p>Bravo, vous avez gagné :</p>
+          <ul className="cont-pastries-won">
+            {pastriesWon.map((pastrie, index) => (
+              <li key={pastrie.id}>- 1 {pastrie.name}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    } else if (stateResult == false) {
+      return <p>Dommage, vous avez perdu !</p>;
+    } else {
+      return null;
+    }
+  };
+
   const throwDices = () => {
     const results = [];
 
@@ -97,22 +111,10 @@ function GamePage() {
       <div className="container">
         <h1>Game</h1>
         <div className="cont-De">{renderImages()}</div>
-        <div>
-          {pastriesWon.length > 0 && (
-            <div>
-              <p>Bravo, vous avez gagné :</p>
-              <ul className="cont-pastries-won">
-                {pastriesWon.map((pastrie, index) => (
-                  <li key={pastrie.id}>- 1 {pastrie.name}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+        <div>{printResultState()}</div>
         <button onClick={handleClick} disabled={remainingAttempts === 0}>
           Lancer les dés ({remainingAttempts} essais restants)
         </button>
-
         <div>
           {pastries.length > 0 && (
             <div>
