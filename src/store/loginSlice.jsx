@@ -1,25 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import axios from "axios";
 const initialState = {
   email: "",
   password: "",
-  auth: true,
+  auth: false,
 };
 
 export const loginWebSite = createAsyncThunk(
   "login/loginWebSite",
   async ({ email, password }) => {
+    console.log("logintest");
+    console.log(email);
+    console.log(password);
+    console.log("password");
     try {
-      const response = await axios.post("http://localhost:3001/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:3001/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       if (response.status === 200) {
         return response.data;
+      } else {
+        return false;
       }
     } catch (error) {
-      console.log("error");
+      console.log(error);
+      return false;
     }
   }
 );
@@ -27,7 +38,9 @@ export const loginWebSite = createAsyncThunk(
 export const logoutWebSite = createAsyncThunk(
   "login/logoutWebSite",
   async () => {
-    const response = await axios("http://localhost:3001/logout");
+    const response = await axios("http://localhost:3001/logout", {
+      withCredentials: true,
+    });
 
     return response.status;
   }
@@ -42,6 +55,7 @@ const loginSlice = createSlice({
       state.email = action.payload;
     },
     updatePassword: (state, action) => {
+      console.log(action.payload);
       state.password = action.payload;
     },
   },
@@ -50,7 +64,12 @@ const loginSlice = createSlice({
       //
     });
     builder.addCase(loginWebSite.fulfilled, (state, action) => {
-      state.auth = true;
+      console.log(action);
+      if (action.payload) {
+        state.auth = true;
+      } else {
+        state.auth = false;
+      }
     });
 
     builder.addCase(logoutWebSite.pending, (state, action) => {

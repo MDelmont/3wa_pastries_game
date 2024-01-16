@@ -7,7 +7,7 @@ const HeadNav = (id, titre, chiffre) => {
 
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logoutWebSite);
+    dispatch(logoutWebSite());
   };
 
   return (

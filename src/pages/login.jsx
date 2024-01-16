@@ -1,7 +1,7 @@
 import "../styles/loginPage.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateEmail, updatePassword } from "../store/loginSlice";
+import { updateEmail, updatePassword, loginWebSite } from "../store/loginSlice";
 import { useEffect } from "react";
 
 function LoginPage() {
@@ -26,7 +26,8 @@ function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Email:", login, "Password:", password);
+    dispatch(loginWebSite({email, password}));
+
   };
 
   return (
