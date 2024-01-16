@@ -61,14 +61,17 @@ function GamePage() {
   };
 
   const renderImages = () => {
-    return diceResults && diceResults.map((result, index) => (
-      <img
-        className='de'
-        key={index}
-        src={`/assets/images/de${result}.jpg`}
-        alt={`Dé ${result}`}
-      />
-    ));
+    return (
+      diceResults &&
+      diceResults.map((result, index) => (
+        <img
+          className="de"
+          key={index}
+          src={`/assets/images/de${result}.jpg`}
+          alt={`Dé ${result}`}
+        />
+      ))
+    );
   };
 
   const throwDices = () => {
@@ -102,8 +105,6 @@ function GamePage() {
         </div>
       </div>
     </>
-
-
   );
 }
 
