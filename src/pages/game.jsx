@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { requestPastriesWon } from "../store/gameSlice";
 import { useDispatch, useSelector } from "react-redux";
-import "../styles/game.css";
+import "../styles/game.scss";
 
 function GamePage() {
   const dispatch = useDispatch();
@@ -21,14 +21,14 @@ function GamePage() {
     }
 
     setRemainingAttempts(remainingAttempts - 1);
-      
-      if (remainingAttempts === 1) {
-        console.log("Dernier essai !");
-      }
-      
-      if (remainingAttempts === 0) {
-        console.log("Fin des essais. Désactivez le bouton ici.");
-      }
+
+    if (remainingAttempts === 1) {
+      console.log("Dernier essai !");
+    }
+
+    if (remainingAttempts === 0) {
+      console.log("Fin des essais. Désactivez le bouton ici.");
+    }
   };
 
   const checkVictory = (results) => {
@@ -37,10 +37,10 @@ function GamePage() {
       acc[result] = (acc[result] || 0) + 1;
       return acc;
     }, {});
-  
+
     // Vérifier les conditions de victoire
     const values = Object.values(occurrences);
-    
+
     if (values.some((count) => count === 2)) {
       if (values.filter((count) => count === 2).length === 2) {
         return 2; // Deux paires
@@ -56,7 +56,7 @@ function GamePage() {
     } else if (values.some((count) => count === 4)) {
       return 3; // Carré
     }
-  
+
     return 0; // Aucune condition de victoire
   };
 
@@ -78,6 +78,14 @@ function GamePage() {
     for (let i = 0; i < 5; i++) {
       const diceResult = Math.floor(Math.random() * 6) + 1;
       results.push(diceResult);
+      images.push(
+        <img
+          class="de"
+          key={i}
+          src={`/assets/images/de${i + 1}.jpg`}
+          alt={`Dé ${i + 1}`}
+        />
+      );
     }
     return results;
   };
@@ -85,21 +93,25 @@ function GamePage() {
   return (
     <>
       <div className="container">
-      <h1>Game</h1>
-      {renderImages()}
-      <button onClick={handleClick} disabled={remainingAttempts === 0}>
-        Lancer les dés ({remainingAttempts} essais restants)
-      </button>
-      <ul>
-        {pastriesWon.length > 0 &&
-          pastriesWon.map((pastrie, index) => (
-            <li key={pastrie.id}>
-              {pastrie.name} : {pastrie.quantityWon}
-            </li>
-          ))}
-      </ul>
+        <h1>Game</h1>
+        <div className="cont-De">{renderImages()}</div>
+        <button onClick={handleClick} disabled={remainingAttempts === 0}>
+          Lancer les dés ({remainingAttempts} essais restants)
+        </button>
+        <div>
+          <ul className="cont-pastries-won">
+            {pastriesWon.length > 0 &&
+              pastriesWon.map((pastrie, index) => (
+                <li key={pastrie.id}>
+                  {pastrie.name} : {pastrie.quantityWon}
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </>
+
+
   );
 }
 

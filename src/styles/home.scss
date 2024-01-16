@@ -1,5 +1,28 @@
-.pasties-list {
+button {
+  background-color: #f3d7ca;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 15px;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: #fff8e3;
+}
+
+.pastries-list {
   display: grid;
+  font-size: 25px;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
