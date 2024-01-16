@@ -113,15 +113,17 @@ function GamePage() {
           Lancer les dés ({remainingAttempts} essais restants)
         </button>
 
-        <div className="pastries-list">
+        <div>
           {pastries.length > 0 && (
             <div>
               <h2>Patisseries gagnées:</h2>
-              {pastries.map((pastrie) => (
-                <div key={pastrie.id}>
-                  {CardPasties(pastrie.id, pastrie.name, pastrie.quantityWon)}
-                </div>
-              ))}
+              <div className="pastries-list">
+                {pastries.map((pastrie) => (
+                  <div key={pastrie.id}>
+                    {CardPasties(pastrie.id, pastrie.name, pastrie.quantityWon)}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
