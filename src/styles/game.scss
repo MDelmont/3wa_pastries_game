@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+}
+
+.de {
+  max-width: 5em;
+  height: auto;
+  margin: 1em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.de > li {
+  margin: 5px 10px;
+}
+
+.cont-De {
+  display: flex;
+  margin: 15px;
+}
+
+.cont-pastries-won {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

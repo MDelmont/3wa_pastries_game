@@ -1,12 +1,30 @@
 * {
   font-family: "Amatic SC", sans-serif;
+  font-weight: bold;
 }
 
 header {
-  padding: 10px;
   background-color: #f5eee6;
   color: #e6a4b4;
-  font-size: 35px;
+  font-size: 45px;
+  padding: 10px;
+}
+
+li {
+  margin: 0 10px;
+}
+
+li a {
+  border-radius: 5px;
+  color: #333;
+  font-size: 40px;
+  padding: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+li a:hover {
+  background-color: #f3d7ca;
 }
 
 nav {
@@ -15,25 +33,8 @@ nav {
 }
 
 ul {
-  list-style: none;
   display: flex;
+  list-style: none;
   margin: 0;
   padding: 0;
-}
-
-li {
-  margin: 0 10px;
-}
-
-li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  padding: 5px;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-li a:hover {
-  background-color: #f3d7ca;
 }
