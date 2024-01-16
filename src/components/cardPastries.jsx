@@ -1,4 +1,5 @@
 import "../styles/cardPastrie.scss";
+
 const CardPasties = (id, titre, chiffre) => {
   return (
     <div className="card-Pastries">
