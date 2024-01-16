@@ -1,6 +1,5 @@
 import "../styles/cardPastrie.scss";
 const CardPasties = (id, titre, chiffre) => {
-  console.log(`../assets/images/pastrie_${id}.jpg`);
   return (
     <div className="card-Pastries">
       <img

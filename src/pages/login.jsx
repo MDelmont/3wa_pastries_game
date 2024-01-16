@@ -1,11 +1,19 @@
 import "../styles/loginPage.scss";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEmail, updatePassword } from "../store/loginSlice";
+import { useEffect } from "react";
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { email, password } = useSelector((state) => state.loginSliceReducer);
+  const navigate = useNavigate();
+  const { email, password, auth } = useSelector(
+    (state) => state.loginSliceReducer
+  );
+
+  useEffect(() => {
+    if (auth) navigate(`/home`);
+  }, [auth]);
 
   const handleEmailChange = (e) => {
     dispatch(updateEmail(e.target.value));
