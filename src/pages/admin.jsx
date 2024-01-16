@@ -38,6 +38,7 @@ function AdminPage() {
           {pastries.length > 0 &&
             pastries.map((pastrie) => (
               <AdminPastries
+                key={pastrie.id}
                 id={pastrie.id}
                 titre={pastrie.name}
                 chiffre={pastrie.quantity}
