@@ -1,6 +1,6 @@
 import "../styles/cardPastrie.scss";
 
-const CardPasties = (id, titre, chiffre) => {
+const CardPastries = (id, titre, chiffre) => {
   return (
     <div className="card-Pastries">
       <img
@@ -17,4 +17,4 @@ const CardPasties = (id, titre, chiffre) => {
   );
 };
 
-export default CardPasties;
+export default CardPastries;

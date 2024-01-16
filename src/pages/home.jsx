@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { requestPastries } from "../store/pastriesSlices";
 import { useDispatch, useSelector } from "react-redux";
-import CardPasties from "../components/cardPastries";
+import CardPastries from "../components/cardPastries";
 import { Link } from "react-router-dom";
 import "../styles/home.scss";
 function HomePage() {
@@ -26,7 +26,7 @@ function HomePage() {
         {pastries.length > 0 &&
           pastries.map((pastrie) => (
             <div key={pastrie.id}>
-              {CardPasties(pastrie.id, pastrie.name, pastrie.quantity)}
+              {CardPastries(pastrie.id, pastrie.name, pastrie.quantity)}
             </div>
           ))}
       </div>

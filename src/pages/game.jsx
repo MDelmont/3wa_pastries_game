@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { requestPastriesWon } from "../store/gameSlice";
 import { requestPastries } from "../store/pastriesSlices";
-import CardPasties from "../components/cardPastries";
+import CardPastries from "../components/cardPastries";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/game.scss";
 
@@ -120,7 +120,11 @@ function GamePage() {
               <div className="pastries-list">
                 {pastries.map((pastrie) => (
                   <div key={pastrie.id}>
-                    {CardPasties(pastrie.id, pastrie.name, pastrie.quantityWon)}
+                    {CardPastries(
+                      pastrie.id,
+                      pastrie.name,
+                      pastrie.quantityWon
+                    )}
                   </div>
                 ))}
               </div>
