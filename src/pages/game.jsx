@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { requestPastriesWon } from "../store/gameSlice";
+import { requestPastries } from "../store/pastriesSlices";
+import CardPasties from "../components/cardPastries";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/game.scss";
 
@@ -9,6 +11,11 @@ function GamePage() {
   const [diceResults, setDiceResults] = useState(Array(5).fill(1));
   const [remainingAttempts, setRemainingAttempts] = useState(3);
 
+  const { pastries } = useSelector((store) => store.pastriesSliceReducer);
+
+  useEffect(() => {
+    dispatch(requestPastries());
+  }, [pastriesWon]);
   const handleClick = () => {
     const results = throwDices();
     setDiceResults(results);
@@ -61,14 +68,17 @@ function GamePage() {
   };
 
   const renderImages = () => {
-    return diceResults && diceResults.map((result, index) => (
-      <img
-        className='de'
-        key={index}
-        src={`/assets/images/de${result}.jpg`}
-        alt={`Dé ${result}`}
-      />
-    ));
+    return (
+      diceResults &&
+      diceResults.map((result, index) => (
+        <img
+          className="de"
+          key={index}
+          src={`/assets/images/de${result}.jpg`}
+          alt={`Dé ${result}`}
+        />
+      ))
+    );
   };
 
   const throwDices = () => {
@@ -87,23 +97,36 @@ function GamePage() {
       <div className="container">
         <h1>Game</h1>
         <div className="cont-De">{renderImages()}</div>
+        <div>
+          {pastriesWon.length > 0 && (
+            <div>
+              <p>Bravo, vous avez gagné :</p>
+              <ul className="cont-pastries-won">
+                {pastriesWon.map((pastrie, index) => (
+                  <li key={pastrie.id}>- 1 {pastrie.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
         <button onClick={handleClick} disabled={remainingAttempts === 0}>
           Lancer les dés ({remainingAttempts} essais restants)
         </button>
-        <div>
-          <ul className="cont-pastries-won">
-            {pastriesWon.length > 0 &&
-              pastriesWon.map((pastrie, index) => (
-                <li key={pastrie.id}>
-                  {pastrie.name} : {pastrie.quantityWon}
-                </li>
+
+        <div className="pastries-list">
+          {pastries.length > 0 && (
+            <div>
+              <h2>Patisseries gagnées:</h2>
+              {pastries.map((pastrie) => (
+                <div key={pastrie.id}>
+                  {CardPasties(pastrie.id, pastrie.name, pastrie.quantityWon)}
+                </div>
               ))}
-          </ul>
+            </div>
+          )}
         </div>
       </div>
     </>
-
-
   );
 }
 
