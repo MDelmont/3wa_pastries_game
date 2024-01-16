@@ -3,6 +3,14 @@
   font-weight: bold;
 }
 
+.logout-nav {
+  align-self: flex-end;
+  button {
+    padding: 5px;
+    font-size: 18px;
+  }
+}
+
 header {
   background-color: #f5eee6;
   color: #e6a4b4;
@@ -29,7 +37,8 @@ li a:hover {
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 ul {
