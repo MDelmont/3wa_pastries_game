@@ -12,7 +12,7 @@ function LoginPage() {
   );
 
   useEffect(() => {
-    if (auth) navigate(`/home`);
+    if (auth) navigate(`/admin`);
   }, [auth]);
 
   const handleEmailChange = (e) => {
@@ -26,8 +26,7 @@ function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(loginWebSite({email, password}));
-
+    dispatch(loginWebSite({ email, password }));
   };
 
   return (

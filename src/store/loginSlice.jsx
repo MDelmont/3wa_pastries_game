@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   email: "",
   password: "",
-  auth: false,
+  auth: true,
 };
 
 export const loginWebSite = createAsyncThunk(

@@ -1,7 +1,5 @@
-import {
-  createBrowserRouter,
-  Outlet,
-} from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import AdminPage from "../pages/admin";
 import ContactPage from "../pages/contact";
 import GamePage from "../pages/game";
 import HomePage from "../pages/home";
@@ -15,7 +13,7 @@ import HeadNav from "../components/headNav";
 const Root = () => {
   return (
     <div>
-        <HeadNav />
+      <HeadNav />
       <main>
         <Outlet />
       </main>
@@ -43,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "Contact",
         element: <ContactPage />,
+      },
+      {
+        path: "Admin",
+        element: <AdminPage />,
       },
     ],
   },
