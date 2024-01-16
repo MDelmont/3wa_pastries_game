@@ -4,11 +4,11 @@ import {
   Outlet,
   useNavigate,
 } from "react-router-dom";
-import HomePage  from "../pages/home";
-import LoginPage  from "../pages/login";
-import GamePage  from "../pages/game";
-import ContactPage  from "../pages/contact";
-import '../styles/header.scss'
+import HomePage from "../pages/home";
+import LoginPage from "../pages/login";
+import GamePage from "../pages/game";
+import ContactPage from "../pages/contact";
+import "../styles/header.scss";
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -23,7 +23,7 @@ const Root = () => {
               <Link to="/Home">Home</Link>
             </li>
             <li>
-              <Link to="/login">login</Link>
+              <Link to="/Login">login</Link>
             </li>
             <li>
               <Link to="/Contact">Contact</Link>
