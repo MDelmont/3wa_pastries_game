@@ -27,7 +27,7 @@ function AdminPage() {
         <AddPastrieForm />
       </Modal>
 
-      <p>Liste des pâtisseries</p>
+      <h2>Liste des pâtisseries</h2>
       <table>
         <thead>
           <tr>
