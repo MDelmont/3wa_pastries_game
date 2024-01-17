@@ -1,5 +1,6 @@
 import "../styles/admin.scss";
 
+import Modal from "./modal";
 const AdminPastries = ({ id, titre, chiffre }) => {
   return (
     <tr className="admin-card-Pastries">
@@ -15,7 +16,9 @@ const AdminPastries = ({ id, titre, chiffre }) => {
       <td>{chiffre}</td>
       <td>
         <div className="admin-button">
-          <button>Add</button>
+          <Modal btnName="add">
+            <div>Formulaire a faire</div>
+          </Modal>
           <button>Delete</button>
         </div>
       </td>
