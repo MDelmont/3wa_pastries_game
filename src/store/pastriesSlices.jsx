@@ -11,6 +11,8 @@ export const requestPastries = createAsyncThunk("get/pastries", async () => {
   return pastries;
 });
 
+const addPastryQuantity = () => {};
+
 const pastriesSlice = createSlice({
   name: "pastries",
   initialState,
