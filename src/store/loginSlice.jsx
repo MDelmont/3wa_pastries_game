@@ -9,10 +9,6 @@ const initialState = {
 export const loginWebSite = createAsyncThunk(
   "login/loginWebSite",
   async ({ email, password }) => {
-    console.log("logintest");
-    console.log(email);
-    console.log(password);
-    console.log("password");
     try {
       const response = await axios.post(
         "http://localhost:3001/login",
