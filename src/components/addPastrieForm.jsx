@@ -1,4 +1,5 @@
 import "../styles/admin.scss";
+import { addNewPastrie } from "../store/pastriesSlices";
 
 import { useState } from "react";
 

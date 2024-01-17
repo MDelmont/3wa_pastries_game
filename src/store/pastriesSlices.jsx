@@ -22,7 +22,28 @@ const pastriesSlice = createSlice({
     builder.addCase(requestPastries.fulfilled, (state, action) => {
       state.pastries = action.payload;
     });
+    builder.addCase(addNewPastrie.pending, (state, action) => {
+      //
+    });
+    builder.addCase(addNewPastrie.fulfilled, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
+
+const addNewPastrie = createAsyncThunk("post/pastrie", async (postData) => {
+  try{
+    const response = await axios.post("http://localhost:3001/pastrie", postData);
+    if(response.status == 200){
+      return {
+        pastrie : response.data,
+        postData
+      }
+    }
+  }catch (error){
+    console.log(error);
+  }
+  
+})
 
 export default pastriesSlice.reducer;
