@@ -24,7 +24,7 @@ function AdminPage() {
     <div className="admin-page">
       <button>Ajouter une pâtisserie</button>
       <AddPastrieForm />
-      <p>Liste des pâtisseries</p>
+      <h2>Liste des pâtisseries</h2>
       <table>
         <thead>
           <tr>

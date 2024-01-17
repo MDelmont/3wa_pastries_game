@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   email: "",
   password: "",
-  auth: true,
+  auth: false,
 };
 
 export const loginWebSite = createAsyncThunk(
@@ -38,7 +38,7 @@ export const loginWebSite = createAsyncThunk(
 export const logoutWebSite = createAsyncThunk(
   "login/logoutWebSite",
   async () => {
-    const response = await axios("http://localhost:3001/logout", {
+    const response = await axios("http://localhost:3001/login", {
       withCredentials: true,
     });
 

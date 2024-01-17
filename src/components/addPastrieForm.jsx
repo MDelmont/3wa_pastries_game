@@ -1,4 +1,4 @@
-// import "../styles/admin.scss";
+import "../styles/admin.scss";
 
 import { useState } from "react";
 
@@ -17,25 +17,36 @@ const AddPastrieForm = () => {
     setPastryName(e.target.value);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <span>Nom de la pâtisserie:</span>
-        <input type="text" value={pastryName} onChange={handleName} required />
-      </label>
-      <label>
-        <span>Quantité:</span>
-        <input
-          type="number"
-          value={pastryQuantity}
-          onChange={handleQuantity}
-          required
-        />
-      </label>
-      <label>
-        <span>Image:</span>
-        <button>Browse...</button>
-      </label>
-      <button type="submit">Ajouter</button>
+    <form className="admin-page" onSubmit={handleSubmit}>
+      <div className="admin-form">
+        <label>
+          <span>Nom de la pâtisserie:</span>
+          <input
+            type="text"
+            value={pastryName}
+            onChange={handleName}
+            required
+          />
+        </label>
+        <label>
+          <span>Quantité:</span>
+          <input
+            type="number"
+            value={pastryQuantity}
+            onChange={handleQuantity}
+            required
+          />
+        </label>
+        <label>
+          <span>Image:</span>
+          <button className="pastry-button">Browse...</button>
+        </label>
+      </div>
+      <div className="form-group-check">
+        <button className="add-pastrie" type="submit">
+          Ajouter
+        </button>
+      </div>
     </form>
   );
 };
