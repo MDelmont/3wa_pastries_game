@@ -5,6 +5,7 @@ import AdminPastries from "../components/adminPastries";
 import AddPastrieForm from "../components/addPastrieForm";
 import { useEffect } from "react";
 import { requestPastries } from "../store/pastriesSlices";
+import Modal from "../components/modal";
 
 function AdminPage() {
   const dispatch = useDispatch();
@@ -22,9 +23,11 @@ function AdminPage() {
 
   return (
     <div className="admin-page">
-      <button>Ajouter une pâtisserie</button>
-      <AddPastrieForm />
-      <h2>Liste des pâtisseries</h2>
+      <Modal btnName="Ajouter une pâtisserie">
+        <AddPastrieForm />
+      </Modal>
+
+      <p>Liste des pâtisseries</p>
       <table>
         <thead>
           <tr>
