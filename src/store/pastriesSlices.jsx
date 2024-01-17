@@ -31,17 +31,20 @@ const pastriesSlice = createSlice({
   },
 });
 
-const addNewPastrie = createAsyncThunk("post/pastrie", async (postData) => {
+export const addNewPastrie = createAsyncThunk("post/pastrie", async (postData) => {
+  console.log(postData);
   try{
-    const response = await axios.post("http://localhost:3001/pastrie", postData);
+    const newData = {name : postData.pastryName, quantity : postData.pastryQuantity,}
+    const response = await axios.post("http://localhost:3001/pastrie", newData);
     if(response.status == 200){
       return {
         pastrie : response.data,
-        postData
+        image : postData.selectedImage
       }
     }
   }catch (error){
     console.log(error);
+    return false;
   }
   
 })

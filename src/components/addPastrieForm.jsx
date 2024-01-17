@@ -1,19 +1,18 @@
 import "../styles/admin.scss";
 import ImageUploader from "./ImageUploader";
 import { useState } from "react";
+import { addNewPastrie } from "../store/pastriesSlices";
+import { useDispatch } from "react-redux";
 
 const AddPastrieForm = () => {
   const [pastryName, setPastryName] = useState("");
   const [pastryQuantity, setPastryQuantity] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
-    console.log("Pastry Name:", pastryName);
-    console.log("Pastry Quantity:", pastryQuantity);
-    console.log("Selected Image Data:", selectedImage);
+    dispatch(addNewPastrie({pastryName, pastryQuantity, selectedImage}));
   };
 
   const handleQuantity = (e) => {
