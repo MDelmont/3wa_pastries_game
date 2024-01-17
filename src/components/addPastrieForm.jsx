@@ -45,6 +45,7 @@ const AddPastrieForm = () => {
             type="number"
             value={pastryQuantity}
             onChange={handleQuantity}
+            min={1}
             required
           />
         </label>

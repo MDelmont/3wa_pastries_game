@@ -6,7 +6,10 @@ function ContactPage() {
       <div className="contact-container">
         <div className="background"></div>
         <div className="text">
-          <h1 className="rainbow">La Patisserie du Dauphin arc-en-ciel </h1>
+          <h1>
+            La Patisserie du Dauphin{" "}
+            <span className="rainbow"> arc-en-ciel</span>{" "}
+          </h1>
           <p>
             Un mariage raté? Un craquage pendant votre régime? Une tentative
             pour impressionner votre belle-mère? Continuez à chercher, cette

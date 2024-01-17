@@ -19,7 +19,7 @@ const AdminPastries = ({ id, titre, chiffre }) => {
           <Modal btnName="add">
             <div>Formulaire a faire</div>
           </Modal>
-          <button>Delete</button>
+          <button className="btn-modal">Delete</button>
         </div>
       </td>
     </tr>

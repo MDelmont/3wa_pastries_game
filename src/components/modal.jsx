@@ -26,7 +26,7 @@ const Modal = ({ btnName, children }) => {
           <div className="modal-content">
             {children}
             <button className="close-modal" onClick={toggleModal}>
-              CLOSE
+              X
             </button>
           </div>
         </div>

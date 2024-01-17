@@ -7,6 +7,8 @@ img {
 .admin-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  font-size: 20px;
 }
 
 .admin-form {
@@ -52,4 +54,9 @@ img {
   cursor: pointer;
   font-size: 14px;
   width: 400px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 30px;
 }
