@@ -11,7 +11,27 @@ export const requestPastries = createAsyncThunk("get/pastries", async () => {
   return pastries;
 });
 
-const addPastryQuantity = () => {};
+export const addPastryQuantity = createAsyncThunk(
+  "put/pastrie",
+  async (putData) => {
+    console.log("putData", putData);
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/api/pastrie/${putData.id}`,
+        { quantity: putData.pastryQuantity },
+        { withCredentials: true }
+      );
+      if (response.status == 200) {
+        return {
+          pastrie: response.data,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+);
 
 const pastriesSlice = createSlice({
   name: "pastries",
@@ -28,27 +48,33 @@ const pastriesSlice = createSlice({
       //
     });
     builder.addCase(addNewPastrie.fulfilled, (state, action) => {
-      if(action.payload !== false){
+      if (action.payload !== false) {
         //
       }
     });
   },
 });
 
-export const addNewPastrie = createAsyncThunk("post/pastrie", async (postData) => {
-  try{
-    const response = await axios.post("http://localhost:3001/api/pastrie/", {name : postData.pastryName, quantity : postData.pastryQuantity,}, { withCredentials: true });
-    if(response.status == 200){
-      return {
-        pastrie : response.data,
-        image : postData.selectedImage
+export const addNewPastrie = createAsyncThunk(
+  "post/pastrie",
+  async (postData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/pastrie/",
+        { name: postData.pastryName, quantity: postData.pastryQuantity },
+        { withCredentials: true }
+      );
+      if (response.status == 200) {
+        return {
+          pastrie: response.data,
+          image: postData.selectedImage,
+        };
       }
+    } catch (error) {
+      console.log(error);
+      return false;
     }
-  }catch (error){
-    console.log(error);
-    return false;
   }
-  
-})
+);
 
 export default pastriesSlice.reducer;

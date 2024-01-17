@@ -1,13 +1,17 @@
 import Modal from "./modal";
 import { useState } from "react";
+import { addPastryQuantity } from "../store/pastriesSlices";
+import { useDispatch } from "react-redux";
 
 import "../styles/admin.scss";
 
 const AdminPastries = ({ id, titre, chiffre }) => {
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    //  if(pastryQuantity !== undefined && pastryQuantity > 1)
-    console.log(pastryQuantity);
+    const newPastryQuantity = parseInt(pastryQuantity) + parseInt(chiffre);
+    console.log(chiffre);
+    dispatch(addPastryQuantity({ id, newPastryQuantity }));
   };
   const [pastryQuantity, setPastryQuantity] = useState("");
   const handleQuantity = (e) => {
@@ -45,6 +49,7 @@ const AdminPastries = ({ id, titre, chiffre }) => {
               </button>
             </form>
           </Modal>
+          <button className="btn-moda">Delete</button>
         </div>
       </td>
     </tr>
