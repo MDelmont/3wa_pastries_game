@@ -26,16 +26,16 @@ const pastriesSlice = createSlice({
       //
     });
     builder.addCase(addNewPastrie.fulfilled, (state, action) => {
-      console.log(action.payload);
+      if(action.payload !== false){
+        //
+      }
     });
   },
 });
 
 export const addNewPastrie = createAsyncThunk("post/pastrie", async (postData) => {
-  console.log(postData);
   try{
-    const newData = {name : postData.pastryName, quantity : postData.pastryQuantity,}
-    const response = await axios.post("http://localhost:3001/pastrie", newData);
+    const response = await axios.post("http://localhost:3001/api/pastrie/", {name : postData.pastryName, quantity : postData.pastryQuantity,}, { withCredentials: true });
     if(response.status == 200){
       return {
         pastrie : response.data,
