@@ -1,21 +1,31 @@
 import "../styles/admin.scss";
-import { addNewPastrie } from "../store/pastriesSlices";
-
+import ImageUploader from "./ImageUploader";
 import { useState } from "react";
 
 const AddPastrieForm = () => {
   const [pastryName, setPastryName] = useState("");
+  const [pastryQuantity, setPastryQuantity] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+    console.log("Pastry Name:", pastryName);
+    console.log("Pastry Quantity:", pastryQuantity);
+    console.log("Selected Image Data:", selectedImage);
   };
 
-  const [pastryQuantity, setPastryQuantity] = useState("");
   const handleQuantity = (e) => {
     setPastryQuantity(e.target.value);
   };
 
   const handleName = (e) => {
     setPastryName(e.target.value);
+  };
+
+  const handleImageUpload = (imageData) => {
+    setSelectedImage(imageData);
   };
   return (
     <form className="admin-page" onSubmit={handleSubmit}>
@@ -41,7 +51,7 @@ const AddPastrieForm = () => {
         </label>
         <label>
           <span>Image:</span>
-          <button className="pastry-button">Browse...</button>
+          <ImageUploader onImageUpload={handleImageUpload} />
         </label>
       </div>
       <div className="form-group-check">
