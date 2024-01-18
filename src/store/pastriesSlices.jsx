@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   pastries: {},
+  needUpdate: false,
 };
 
 export const requestPastries = createAsyncThunk("get/pastries", async () => {
@@ -14,11 +15,10 @@ export const requestPastries = createAsyncThunk("get/pastries", async () => {
 export const addPastryQuantity = createAsyncThunk(
   "put/pastrie",
   async (putData) => {
-    console.log("putData", putData);
     try {
       const response = await axios.put(
         `http://localhost:3001/api/pastrie/${putData.id}`,
-        { quantity: putData.pastryQuantity },
+        { quantity: putData.newPastryQuantity },
         { withCredentials: true }
       );
       if (response.status == 200) {
@@ -26,6 +26,7 @@ export const addPastryQuantity = createAsyncThunk(
           pastrie: response.data,
         };
       }
+      return false;
     } catch (error) {
       console.log(error);
       return false;
@@ -49,7 +50,20 @@ const pastriesSlice = createSlice({
     });
     builder.addCase(addNewPastrie.fulfilled, (state, action) => {
       if (action.payload !== false) {
-        //
+        state.needUpdate = !state.needUpdate;
+      }
+    });
+    builder.addCase(addPastryQuantity.fulfilled, (state, action) => {
+      console.log("slice");
+      console.log(action.payload);
+      if (action.payload !== false) {
+        state.needUpdate = !state.needUpdate;
+      }
+    });
+    builder.addCase(deletePastrie.fulfilled, (state, action) => {
+
+      if (action.payload !== false) {
+        state.pastries = action.payload.response
       }
     });
   },
@@ -76,5 +90,23 @@ export const addNewPastrie = createAsyncThunk(
     }
   }
 );
+
+export const deletePastrie = createAsyncThunk("delete/pastrie", async (id) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:3001/api/pastrie/${id}`,
+      { withCredentials: true }
+    );
+    if (response.status == 200) {
+      return {
+        response: response.data,
+      };
+    }
+    return false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+});
 
 export default pastriesSlice.reducer;
