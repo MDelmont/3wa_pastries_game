@@ -49,7 +49,8 @@ const pastriesSlice = createSlice({
     });
     builder.addCase(addNewPastrie.fulfilled, (state, action) => {
       if (action.payload !== false) {
-        //
+        const { id } = action.payload.pastrie;
+        const image = action.payload.image;
       }
     });
   },
