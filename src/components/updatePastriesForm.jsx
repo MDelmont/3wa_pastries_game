@@ -1,4 +1,3 @@
-import "../styles/admin.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPastryQuantity } from "../store/pastriesSlices";
@@ -28,7 +27,6 @@ const UpdatePastrieForm = ({ id, chiffre }) => {
         addPastryQuantity({ id, newPastryQuantity })
       );
       promiseSucces.then((succes) => {
-        console.log("succes.payload", succes.payload);
         if (succes.payload !== false) {
           setMessage(messages.addQuantity);
         } else {
@@ -57,7 +55,7 @@ const UpdatePastrieForm = ({ id, chiffre }) => {
       {message && <p>{message}</p>}
       <label>
         <input type="hidden" value={id} />
-        <span>Quantité:</span>
+        <span>Quantité à ajouter: </span>
         <input
           type="number"
           value={pastryQuantity}
@@ -66,7 +64,7 @@ const UpdatePastrieForm = ({ id, chiffre }) => {
         />
       </label>{" "}
       <button className="btn-modal" type="submit">
-        Confirm
+        Confirmer
       </button>
     </form>
   );

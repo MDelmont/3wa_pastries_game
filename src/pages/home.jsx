@@ -22,6 +22,7 @@ function HomePage() {
           <button>Jouer</button>
         </Link>
       </div>
+      <h2>Stock des Patisseries:</h2>
       <div className="pastries-list">
         {pastries.length > 0 &&
           pastries.map((pastrie) => (

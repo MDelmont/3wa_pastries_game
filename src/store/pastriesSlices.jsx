@@ -54,8 +54,7 @@ const pastriesSlice = createSlice({
       }
     });
     builder.addCase(addPastryQuantity.fulfilled, (state, action) => {
-      console.log("slice");
-      console.log(action.payload);
+
       if (action.payload !== false) {
         state.needUpdate = !state.needUpdate;
       }
@@ -90,6 +89,7 @@ export const addNewPastrie = createAsyncThunk(
     }
   }
 );
+
 
 export const deletePastrie = createAsyncThunk("delete/pastrie", async (id) => {
   try {

@@ -7,7 +7,6 @@ import "../styles/modal.scss";
  * @returns JSX
  */
 const Modal = ({ btnName, children }) => {
- 
   const [modal, setModal] = useState(false);
 
   /**
@@ -29,7 +28,7 @@ const Modal = ({ btnName, children }) => {
 
   return (
     <>
-      <button onClick={toggleModal} className="btn-modal">
+      <button onClick={toggleModal} className={`btn-modal btn-${btnName.split(' ')[0]}`}>
         {btnName}
       </button>
 
@@ -46,6 +45,5 @@ const Modal = ({ btnName, children }) => {
       )}
     </>
   );
-
 };
 export default Modal;

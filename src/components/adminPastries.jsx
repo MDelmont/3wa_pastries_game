@@ -1,7 +1,7 @@
 import Modal from "./modal";
 
 import UpdatePastrieForm from "./updatePastriesForm";
-import "../styles/admin.scss";
+import "../styles/adminPage.scss";
 import { useDispatch } from "react-redux";
 import { deletePastrie } from "../store/pastriesSlices";
 import DeletePastrieForm from "./DeletePastrieForm";
@@ -38,14 +38,14 @@ const AdminPastries = ({ id, titre, chiffre }) => {
         />
       </td>
       <td>{titre}</td>
-      <td>{chiffre}</td>
+      <td className="td-number">{chiffre}</td>
       <td>
         <div className="admin-button">
-          <Modal btnName="add">
+          <Modal btnName="modifier">
             <UpdatePastrieForm id={id} chiffre={chiffre} />
           </Modal>
 
-          <Modal btnName="delete">
+          <Modal btnName="supprimer">
             <DeletePastrieForm titre={titre} handleDelete={handleDelete} />
           </Modal>
         </div>

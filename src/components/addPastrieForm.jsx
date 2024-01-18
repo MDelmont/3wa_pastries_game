@@ -1,4 +1,4 @@
-import "../styles/admin.scss";
+import "../styles/adminPage.scss";
 import ImageUploader from "./ImageUploader";
 import { useState } from "react";
 import { addNewPastrie } from "../store/pastriesSlices";

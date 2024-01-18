@@ -1,4 +1,5 @@
 import "../styles/loginPage.scss";
+import "../styles/adminPage.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AdminPastries from "../components/adminPastries";
@@ -11,7 +12,9 @@ function AdminPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state) => state.loginSliceReducer);
-  const { pastries,needUpdate } = useSelector((store) => store.pastriesSliceReducer);
+  const { pastries, needUpdate } = useSelector(
+    (store) => store.pastriesSliceReducer
+  );
 
   useEffect(() => {
     if (!auth) navigate(`/login`);

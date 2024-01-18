@@ -34,7 +34,6 @@ export const loginWebSite = createAsyncThunk(
 export const logoutWebSite = createAsyncThunk(
   "login/logoutWebSite",
   async () => {
-    console.log("logout");
     const response = await axios.get("http://localhost:3001/logout", {
       withCredentials: true,
     });
