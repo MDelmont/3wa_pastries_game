@@ -3,7 +3,11 @@ import ImageUploader from "./ImageUploader";
 import { useState } from "react";
 import { addNewPastrie } from "../store/pastriesSlices";
 import { useDispatch } from "react-redux";
-
+import messages from "../config/message";
+/**
+ * Object react qui permet de créer le formulaire d'ajout de patisserie
+ * @returns JSX
+ */
 const AddPastrieForm = () => {
   const [pastryName, setPastryName] = useState("");
   const [pastryQuantity, setPastryQuantity] = useState("");
@@ -11,36 +15,67 @@ const AddPastrieForm = () => {
   const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
 
+  /**
+   * soumission du formulaire
+   * @param {*} e evenement
+   */
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const promiseSucces = dispatch(
-      addNewPastrie({ pastryName, pastryQuantity, selectedImage })
-    );
+    try {
+      e.preventDefault();
+      const promiseSucces = dispatch(
+        addNewPastrie({ pastryName, pastryQuantity, selectedImage })
+      );
 
-    promiseSucces.then((succes) => {
-      const id = succes?.payload?.pastrie?.id;
+      promiseSucces.then((succes) => {
+        const id = succes?.payload?.pastrie?.id;
 
-      if (id) {
-        setMessage("Patisserie ajoutée avec succes");
-      } else {
-        setMessage("Un problème est survenu");
-      }
-    });
+        if (id) {
+          setMessage(messages.addPastry);
+        } else {
+          setMessage(messages.error);
+        }
+      });
+    } catch (e) {
+      console.log("handleSubmit in AddPastrieForm");
+    }
   };
-
+  /**
+   * Permet de faire appel à la fonction de modification de quantité
+   * @param {*} e evenement
+   */
   const handleQuantity = (e) => {
-    setPastryQuantity(e.target.value);
-    setMessage(null);
+    try {
+      setPastryQuantity(e.target.value);
+      setMessage(null);
+    } catch (e) {
+      console.log("handleQuantity in AddPastrieForm");
+    }
   };
 
+  /**
+   * Permet de faire appel à la fonction de modification de name
+   * @param {*} e evenement
+   */
   const handleName = (e) => {
-    setPastryName(e.target.value);
-    setMessage(null);
+    try {
+      setPastryName(e.target.value);
+      setMessage(null);
+    } catch (e) {
+      console.log("handleName in AddPastrieForm");
+    }
   };
 
+  /**
+   * Permet de faire appel à la fonction de modification de l'image
+   * @param {File} imageData file
+   */
   const handleImageUpload = (imageData) => {
-    setSelectedImage(imageData);
-    setMessage(null);
+    try {
+      setSelectedImage(imageData);
+      setMessage(null);
+    } catch (e) {
+      console.log("handleImageUpload in AddPastrieForm");
+    }
   };
   return (
     <form className="admin-page" onSubmit={handleSubmit}>

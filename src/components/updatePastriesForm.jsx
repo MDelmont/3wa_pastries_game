@@ -2,32 +2,54 @@ import "../styles/admin.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPastryQuantity } from "../store/pastriesSlices";
+import messages from "../config/message";
+/**
+ * Formulaire de mise à jours de patisserie
+ * @param {*} param0 id : identifiant de l'object, chiffre :
+ * @returns JSX
+ */
 const UpdatePastrieForm = ({ id, chiffre }) => {
   const [pastryQuantity, setPastryQuantity] = useState("");
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
 
+  /**
+   * Fonction de soumission de formulaire
+   * @param {*} e
+   */
   const handleSubmit = (e) => {
-    e.preventDefault();
-    let newPastryQuantity = parseInt(pastryQuantity) + parseInt(chiffre);
-    if (newPastryQuantity < 0) newPastryQuantity = 0;
+    try {
+      e.preventDefault();
+      let newPastryQuantity = parseInt(pastryQuantity) + parseInt(chiffre);
+      if (newPastryQuantity < 0) newPastryQuantity = 0;
 
-    const promiseSucces = dispatch(
-      addPastryQuantity({ id, newPastryQuantity })
-    );
-    promiseSucces.then((succes) => {
-      console.log("succes.payload", succes.payload);
-      if (succes.payload !== false) {
-        setMessage("Ajoute de la quantité réussi");
-      } else {
-        setMessage("Un problème est survenu");
-      }
-    });
+      const promiseSucces = dispatch(
+        addPastryQuantity({ id, newPastryQuantity })
+      );
+      promiseSucces.then((succes) => {
+        console.log("succes.payload", succes.payload);
+        if (succes.payload !== false) {
+          setMessage(messages.addQuantity);
+        } else {
+          setMessage(messages.error);
+        }
+      });
+    } catch (e) {
+      console.log("error handleSubmit in UpdatePastrieForm");
+    }
   };
 
+  /**
+   * Modification de la quantité
+   * @param {*} e
+   */
   const handleQuantity = (e) => {
-    setPastryQuantity(e.target.value);
+    try {
+      setPastryQuantity(e.target.value);
+    } catch (e) {
+      console.log("error handleQuantity in UpdatePastrieForm");
+    }
   };
 
   return (

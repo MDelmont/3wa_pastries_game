@@ -34,7 +34,8 @@ export const loginWebSite = createAsyncThunk(
 export const logoutWebSite = createAsyncThunk(
   "login/logoutWebSite",
   async () => {
-    const response = await axios("http://localhost:3001/login", {
+    console.log("logout");
+    const response = await axios.get("http://localhost:3001/logout", {
       withCredentials: true,
     });
 
@@ -47,11 +48,9 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     updateEmail: (state, action) => {
-   
       state.email = action.payload;
     },
     updatePassword: (state, action) => {
-  
       state.password = action.payload;
     },
   },
@@ -60,7 +59,6 @@ const loginSlice = createSlice({
       //
     });
     builder.addCase(loginWebSite.fulfilled, (state, action) => {
-
       if (action.payload) {
         state.auth = true;
       } else {
@@ -72,7 +70,6 @@ const loginSlice = createSlice({
       //
     });
     builder.addCase(logoutWebSite.fulfilled, (state, action) => {
-  
       state.auth = false;
     });
   },
