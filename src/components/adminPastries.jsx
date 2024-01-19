@@ -36,7 +36,7 @@ const AdminPastries = ({ id, titre, chiffre }) => {
   return (
     <tr className="admin-card-Pastries">
       <td>
-        {" "}
+       
         {imageError ? (
           // Afficher une image de remplacement en cas d'erreur d'image
           <img

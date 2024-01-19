@@ -6,6 +6,9 @@ const initialState = {
   remainingAttempts: 3,
 };
 
+/**
+ * Patisserie gagnées
+ */
 export const requestPastriesWon = createAsyncThunk(
   "get/pastriesWon",
   async (id) => {
@@ -21,6 +24,9 @@ export const requestPastriesWon = createAsyncThunk(
   }
 );
 
+/**
+ * reset game pastries
+ */
 export const resetGame = createAsyncThunk("reset/pastrie", async () => {
   try {
     const response = await axios.get(`http://localhost:3001/game/reset`);
@@ -34,6 +40,9 @@ export const resetGame = createAsyncThunk("reset/pastrie", async () => {
   }
 });
 
+/**
+ * création du slice game
+ */
 const gameSlice = createSlice({
   name: "pastriesWon",
   initialState,
