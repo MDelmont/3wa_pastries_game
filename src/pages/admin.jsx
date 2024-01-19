@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { requestPastries } from "../store/pastriesSlices";
 import Modal from "../components/modal";
 
-function AdminPage() {
+const  AdminPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state) => state.loginSliceReducer);

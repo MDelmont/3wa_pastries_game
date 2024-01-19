@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateEmail, updatePassword, loginWebSite } from "../store/loginSlice";
 import { useEffect } from "react";
 
-function LoginPage() {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { email, password, auth } = useSelector(
@@ -54,6 +54,6 @@ function LoginPage() {
       </form>
     </div>
   );
-}
+};
 
 export default LoginPage;

@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../styles/game.scss";
 import { updateRemainingAttempts } from "../store/gameSlice";
 import imgDolphin from "../assets/dolphin.gif";
-function GamePage() {
-  const dispatch = useDispatch();
+const GamePage = () => {
   const { pastriesWon, remainingAttempts } = useSelector(
     (store) => store.gameSliceReducer
   );
@@ -15,7 +14,7 @@ function GamePage() {
   const [stateResult, setStateResult] = useState();
 
   const { pastries } = useSelector((store) => store.pastriesSliceReducer);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(requestPastries());
   }, [pastriesWon]);
@@ -117,7 +116,7 @@ function GamePage() {
   const handleResetClick = (e) => {
     dispatch(resetGame());
     dispatch(updateRemainingAttempts(3));
-    setStateResult(true)
+    setStateResult(true);
   };
   return (
     <>
@@ -142,13 +141,13 @@ function GamePage() {
               <div className="pastries-list">
                 {pastries
                   .filter((pastrie) => pastrie.quantityWon > 0)
-                  .map((pastrie) => (
-                    <div key={pastrie.id}>
-                      {CardPastries(
-                        pastrie.id,
-                        pastrie.name,
-                        pastrie.quantityWon
-                      )}
+                  .map((pastrie, index) => (
+                    <div key={index}>
+                      {<CardPastries
+                        id={pastrie.id}
+                        titre={pastrie.name}
+                        chiffre={pastrie.quantityWon}
+                      />}
                     </div>
                   ))}
               </div>
@@ -158,6 +157,6 @@ function GamePage() {
       </div>
     </>
   );
-}
+};
 
 export default GamePage;

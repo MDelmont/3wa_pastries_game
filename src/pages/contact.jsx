@@ -1,6 +1,6 @@
 import "../styles/contact.scss";
 
-function ContactPage() {
+const  ContactPage = () =>{
   return (
     <>
       <div className="contact-container">

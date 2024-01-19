@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CardPastries from "../components/cardPastries";
 import { Link } from "react-router-dom";
 import "../styles/home.scss";
-function HomePage() {
+const  HomePage = ()  => {
   const dispatch = useDispatch();
   const { pastries } = useSelector((store) => store.pastriesSliceReducer);
 
