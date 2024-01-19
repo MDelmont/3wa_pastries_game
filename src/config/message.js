@@ -1,8 +1,8 @@
 const message = {
   error: "Un problème est survenu",
-  addQuantity: "Ajoute de la quantité réussi",
-  addPastry :"Patisserie ajoutée avec succes",
-  delPastry :"Patisserie supprimée avec succes",
+  addQuantity: "Ajout de la quantité réussi",
+  addPastry: "Pâtisserie ajoutée avec succès",
+  delPastry: "Pâtisserie supprimée avec succès",
 };
 
 export default message;

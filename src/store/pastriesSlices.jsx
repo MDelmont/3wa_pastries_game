@@ -60,9 +60,8 @@ const pastriesSlice = createSlice({
       }
     });
     builder.addCase(deletePastrie.fulfilled, (state, action) => {
-
       if (action.payload !== false) {
-        state.pastries = action.payload.response
+        state.pastries = action.payload.response;
       }
     });
   },
