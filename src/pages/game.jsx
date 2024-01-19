@@ -18,7 +18,11 @@ const GamePage = () => {
   useEffect(() => {
     dispatch(requestPastries());
   }, [pastriesWon]);
-
+  useEffect(() => {
+    if (remainingAttempts == 3) {
+      dispatch(resetGame());
+    }
+  }, []);
   const handleClick = () => {
     const results = throwDices();
     setDiceResults(results);
@@ -143,11 +147,13 @@ const GamePage = () => {
                   .filter((pastrie) => pastrie.quantityWon > 0)
                   .map((pastrie, index) => (
                     <div key={index}>
-                      {<CardPastries
-                        id={pastrie.id}
-                        titre={pastrie.name}
-                        chiffre={pastrie.quantityWon}
-                      />}
+                      {
+                        <CardPastries
+                          id={pastrie.id}
+                          titre={pastrie.name}
+                          chiffre={pastrie.quantityWon}
+                        />
+                      }
                     </div>
                   ))}
               </div>

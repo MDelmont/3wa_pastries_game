@@ -6,12 +6,18 @@ const initialState = {
   needUpdate: false,
 };
 
+/**
+ * requetes les patisseries
+ */
 export const requestPastries = createAsyncThunk("get/pastries", async () => {
   const response = await axios("http://localhost:3001/game/pastries");
   const pastries = response.data;
   return pastries;
 });
 
+/**
+ * modification des patisseries
+ */
 export const addPastryQuantity = createAsyncThunk(
   "put/pastrie",
   async (putData) => {
@@ -34,39 +40,9 @@ export const addPastryQuantity = createAsyncThunk(
   }
 );
 
-const pastriesSlice = createSlice({
-  name: "pastries",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(requestPastries.pending, (state, action) => {
-      //
-    });
-    builder.addCase(requestPastries.fulfilled, (state, action) => {
-      state.pastries = action.payload;
-    });
-    builder.addCase(addNewPastrie.pending, (state, action) => {
-      //
-    });
-    builder.addCase(addNewPastrie.fulfilled, (state, action) => {
-      if (action.payload !== false) {
-        state.needUpdate = !state.needUpdate;
-      }
-    });
-    builder.addCase(addPastryQuantity.fulfilled, (state, action) => {
-
-      if (action.payload !== false) {
-        state.needUpdate = !state.needUpdate;
-      }
-    });
-    builder.addCase(deletePastrie.fulfilled, (state, action) => {
-      if (action.payload !== false) {
-        state.pastries = action.payload.response;
-      }
-    });
-  },
-});
-
+/**
+ * ajoute des patisseries
+ */
 export const addNewPastrie = createAsyncThunk(
   "post/pastrie",
   async (postData) => {
@@ -89,7 +65,9 @@ export const addNewPastrie = createAsyncThunk(
   }
 );
 
-
+/**
+ * suppression des patisseries
+ */
 export const deletePastrie = createAsyncThunk("delete/pastrie", async (id) => {
   try {
     const response = await axios.delete(
@@ -107,5 +85,36 @@ export const deletePastrie = createAsyncThunk("delete/pastrie", async (id) => {
     return false;
   }
 });
+
+/**
+ * création du Slices
+ */
+const pastriesSlice = createSlice({
+  name: "pastries",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(requestPastries.fulfilled, (state, action) => {
+      state.pastries = action.payload;
+    });
+    builder.addCase(addNewPastrie.fulfilled, (state, action) => {
+      if (action.payload !== false) {
+        state.needUpdate = !state.needUpdate;
+      }
+    });
+    builder.addCase(addPastryQuantity.fulfilled, (state, action) => {
+      if (action.payload !== false) {
+        state.needUpdate = !state.needUpdate;
+      }
+    });
+    builder.addCase(deletePastrie.fulfilled, (state, action) => {
+      if (action.payload !== false) {
+        state.pastries = action.payload.response;
+      }
+    });
+  },
+});
+
+
 
 export default pastriesSlice.reducer;
