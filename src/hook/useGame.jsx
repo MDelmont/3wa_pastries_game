@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { requestPastriesWon } from "../store/gameSlice";
+import { requestPastriesWon,resetGame } from "../store/gameSlice";
 import { requestPastries } from "../store/pastriesSlices";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/game.scss";
@@ -123,7 +123,7 @@ const useGame = () => {
     return results;
   };
 
-  const resetGame = () => {
+  const resetGamehook = () => {
     dispatch(resetGame());
     dispatch(updateRemainingAttempts(3));
     setStateResult(true);
@@ -135,7 +135,7 @@ const useGame = () => {
     renderImages,
     printResultState,
     startGame,
-    resetGame,
+    resetGamehook,
   };
 };
 export default useGame;

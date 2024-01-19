@@ -9,14 +9,14 @@ const GamePage = () => {
     renderImages,
     printResultState,
     startGame,
-    resetGame,
+    resetGamehook,
   } = useGame();
 
   const handleClick = (e) => {
     startGame();
   };
   const handleResetClick = (e) => {
-    resetGame();
+    resetGamehook();
   };
   return (
     <>
