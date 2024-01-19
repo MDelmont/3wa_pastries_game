@@ -48,6 +48,7 @@ const GamePage = () => {
                           id={pastrie.id}
                           titre={pastrie.name}
                           chiffre={pastrie.quantityWon}
+                          image={pastrie?.image}
                         />
                       }
                     </div>

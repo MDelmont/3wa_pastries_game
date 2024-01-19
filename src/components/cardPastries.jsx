@@ -7,7 +7,7 @@ import { useState } from "react";
  * @param {*} chiffre Quantité de l'object
  * @returns
  */
-const CardPastries = ({id, titre, chiffre}) => {
+const CardPastries = ({id, titre, chiffre,image}) => {
   const [imageError, setImageError] = useState(false);
 
   const handleImageErrors = () => {
@@ -27,7 +27,7 @@ const CardPastries = ({id, titre, chiffre}) => {
       ) : (
         // Afficher l'image avec le gestionnaire d'événements onError
         <img
-          src={`../assets/images/pastrie_${id}.jpg`}
+          src={`http://localhost:3001/uploads/images/${image}`}
           alt="Image de la carte"
           className="img-carte-Pastries"
           onError={handleImageErrors}

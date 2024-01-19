@@ -19,7 +19,7 @@ const ImageUploader = ({ onImageUpload }) => {
         const reader = new FileReader();
         reader.onloadend = () => {
           setSelectedImage(reader.result);
-          onImageUpload(reader.result);
+          onImageUpload(e.target.files[0]);
         };
         reader.readAsDataURL(file);
       }

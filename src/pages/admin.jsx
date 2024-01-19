@@ -48,6 +48,7 @@ const  AdminPage = () => {
                 id={pastrie.id}
                 titre={pastrie.name}
                 chiffre={pastrie.quantity}
+                image={pastrie?.image}
               />
             ))}
         </tbody>

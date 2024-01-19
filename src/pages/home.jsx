@@ -32,6 +32,7 @@ const  HomePage = ()  => {
               id={pastrie.id}
               titre={pastrie.name}
               chiffre={pastrie.quantity}
+              image={pastrie?.image}
             />
          
             </div>

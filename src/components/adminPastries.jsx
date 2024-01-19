@@ -12,7 +12,7 @@ import { useState } from "react";
  * @param {*} param0  id de l'object, titre : Nom de l'object, chiffre: quantity
  * @returns
  */
-const AdminPastries = ({ id, titre, chiffre }) => {
+const AdminPastries = ({ id, titre, chiffre, image }) => {
   const [imageError, setImageError] = useState(false);
   const dispatch = useDispatch();
   /**
@@ -36,7 +36,6 @@ const AdminPastries = ({ id, titre, chiffre }) => {
   return (
     <tr className="admin-card-Pastries">
       <td>
-       
         {imageError ? (
           // Afficher une image de remplacement en cas d'erreur d'image
           <img
@@ -47,7 +46,7 @@ const AdminPastries = ({ id, titre, chiffre }) => {
         ) : (
           // Afficher l'image avec le gestionnaire d'événements onError
           <img
-            src={`../assets/images/pastrie_${id}.jpg`}
+            src={`http://localhost:3001/uploads/images/${image}`}
             alt="Image de la carte"
             className="img-carte-Pastries"
             onError={handleImageError}

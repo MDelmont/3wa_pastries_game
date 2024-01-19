@@ -23,7 +23,7 @@ export const addPastryQuantity = createAsyncThunk(
   async (putData) => {
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/pastrie/${putData.id}`,
+        `http://localhost:3001/api/pastry/${putData.id}`,
         { quantity: putData.newPastryQuantity },
         { withCredentials: true }
       );
@@ -46,11 +46,25 @@ export const addPastryQuantity = createAsyncThunk(
 export const addNewPastrie = createAsyncThunk(
   "post/pastrie",
   async (postData) => {
+    const formData = new FormData();
+    formData.append("image", postData.selectedImage);
+    formData.append(
+      "pastry",
+      JSON.stringify({
+        name: postData.pastryName,
+        quantity: postData.pastryQuantity,
+      })
+    );
+
+    console.log(postData);
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/pastrie/",
-        { name: postData.pastryName, quantity: postData.pastryQuantity },
-        { withCredentials: true }
+        "http://localhost:3001/api/pastry/",
+        formData,
+        {
+          withCredentials: true,
+          headers: { "content-type": "multipart/form-data" },
+        }
       );
       if (response.status == 200) {
         return {
@@ -71,7 +85,7 @@ export const addNewPastrie = createAsyncThunk(
 export const deletePastrie = createAsyncThunk("delete/pastrie", async (id) => {
   try {
     const response = await axios.delete(
-      `http://localhost:3001/api/pastrie/${id}`,
+      `http://localhost:3001/api/pastry/${id}`,
       { withCredentials: true }
     );
     if (response.status == 200) {
@@ -114,7 +128,5 @@ const pastriesSlice = createSlice({
     });
   },
 });
-
-
 
 export default pastriesSlice.reducer;
