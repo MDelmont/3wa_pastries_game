@@ -2,12 +2,24 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutWebSite } from "../store/loginSlice";
 import "../styles/header.scss";
-const HeadNav = (id, titre, chiffre) => {
+
+/**
+ * Permet de généré le JSX du menu
+ * @returns JSX
+ */
+const HeadNav = () => {
   const { auth } = useSelector((state) => state.loginSliceReducer);
 
   const dispatch = useDispatch();
+  /**
+   * Permet de lancer la fonction de logout de l'application
+   */
   const handleLogout = () => {
-    dispatch(logoutWebSite());
+    try {
+      dispatch(logoutWebSite());
+    } catch (e) {
+      console.log("error handleLogout in HeadNav");
+    }
   };
 
   return (

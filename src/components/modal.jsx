@@ -1,11 +1,24 @@
 import { useState } from "react";
 import "../styles/modal.scss";
 
+/**
+ * Permet de géré la création de modal personnalisé dans l'application
+ * @param {*} param0 { btnName, children } btnName : Nom du bouton, children : enfant
+ * @returns JSX
+ */
 const Modal = ({ btnName, children }) => {
+ 
   const [modal, setModal] = useState(false);
 
+  /**
+   * Permet de géré l'affichage du modal
+   */
   const toggleModal = () => {
-    setModal(!modal);
+    try {
+      setModal(!modal);
+    } catch (e) {
+      console.log("error toggleModal in Modal");
+    }
   };
 
   if (modal) {
@@ -33,5 +46,6 @@ const Modal = ({ btnName, children }) => {
       )}
     </>
   );
+
 };
 export default Modal;

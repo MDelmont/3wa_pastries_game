@@ -1,5 +1,11 @@
 import "../styles/cardPastrie.scss";
-
+/**
+ * Permet de géré la création d'un carte patisserie
+ * @param {*} id identifiant unique de l'object
+ * @param {*} titre Nom de l'object
+ * @param {*} chiffre Quantité de l'object
+ * @returns 
+ */
 const CardPastries = (id, titre, chiffre) => {
   return (
     <div className="card-Pastries">
