@@ -5,6 +5,7 @@ import CardPastries from "../components/cardPastries";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/game.scss";
 import { updateRemainingAttempts } from "../store/gameSlice";
+import imgDolphin from "../assets/dolphin.gif";
 function GamePage() {
   const dispatch = useDispatch();
   const { pastriesWon, remainingAttempts } = useSelector(
@@ -90,7 +91,13 @@ function GamePage() {
         </div>
       );
     } else if (stateResult == false) {
-      return <p>Dommage, vous avez perdu !</p>;
+      return (
+        <div>
+          <img src={imgDolphin} alt="dolphin" />
+          <br />
+          <p>Dommage, vous avez perdu !</p>
+        </div>
+      );
     } else {
       return null;
     }
@@ -110,6 +117,7 @@ function GamePage() {
   const handleResetClick = (e) => {
     dispatch(resetGame());
     dispatch(updateRemainingAttempts(3));
+    setStateResult(true)
   };
   return (
     <>
