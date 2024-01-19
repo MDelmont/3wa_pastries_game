@@ -3,15 +3,20 @@ import "../styles/game.scss";
 import useGame from "../hook/useGame";
 
 const GamePage = () => {
+  const {
+    pastries,
+    remainingAttempts,
+    renderImages,
+    printResultState,
+    startGame,
+    resetGame,
+  } = useGame();
 
-  const {pastries,remainingAttempts,renderImages,printResultState,startGame,resetGame}   =   useGame()
-  
   const handleClick = (e) => {
-    startGame()
+    startGame();
   };
   const handleResetClick = (e) => {
-    ResetClick()
-
+    resetGame();
   };
   return (
     <>

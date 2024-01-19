@@ -44,7 +44,7 @@ export const resetGame = createAsyncThunk("reset/pastrie", async () => {
  * création du slice game
  */
 const gameSlice = createSlice({
-  name: "pastriesWon",
+  name: "game",
   initialState,
   reducers: {
     updateRemainingAttempts: (state, actions) => {
