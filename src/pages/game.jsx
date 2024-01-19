@@ -117,7 +117,7 @@ function GamePage() {
   const handleResetClick = (e) => {
     dispatch(resetGame());
     dispatch(updateRemainingAttempts(3));
-    setStateResult(true)
+    setStateResult(true);
   };
   return (
     <>
@@ -126,7 +126,7 @@ function GamePage() {
         <div className="cont-De">{renderImages()}</div>
 
         {remainingAttempts == 0 && (
-          <button onClick={handleResetClick}>Relancer le jeux</button>
+          <button onClick={handleResetClick}>Relancer le jeu</button>
         )}
 
         {remainingAttempts != 0 && (
