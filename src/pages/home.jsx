@@ -27,7 +27,13 @@ const  HomePage = ()  => {
         {pastries.length > 0 &&
           pastries.map((pastrie) => (
             <div key={pastrie.id}>
-              {CardPastries(pastrie.id, pastrie.name, pastrie.quantity)}
+              
+              <CardPastries
+              id={pastrie.id}
+              titre={pastrie.name}
+              chiffre={pastrie.quantity}
+            />
+         
             </div>
           ))}
       </div>
