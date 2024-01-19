@@ -4,7 +4,7 @@ import "../styles/cardPastrie.scss";
  * @param {*} id identifiant unique de l'object
  * @param {*} titre Nom de l'object
  * @param {*} chiffre Quantité de l'object
- * @returns 
+ * @returns
  */
 const CardPastries = (id, titre, chiffre) => {
   return (
@@ -16,7 +16,7 @@ const CardPastries = (id, titre, chiffre) => {
       />
       <div className="texte-card-Pastries">
         <p>
-          {titre} : <strong>{chiffre}</strong>
+          {titre} : {chiffre}
         </p>
       </div>
     </div>

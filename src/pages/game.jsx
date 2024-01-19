@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { requestPastriesWon } from "../store/gameSlice";
+import { requestPastriesWon, resetGame } from "../store/gameSlice";
 import { requestPastries } from "../store/pastriesSlices";
 import CardPastries from "../components/cardPastries";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/game.scss";
-
+import { updateRemainingAttempts } from "../store/gameSlice";
+import imgDolphin from "../assets/dolphin.gif";
 function GamePage() {
   const dispatch = useDispatch();
-  const { pastriesWon } = useSelector((store) => store.gameSliceReducer);
+  const { pastriesWon, remainingAttempts } = useSelector(
+    (store) => store.gameSliceReducer
+  );
   const [diceResults, setDiceResults] = useState(Array(5).fill(1));
-  const [remainingAttempts, setRemainingAttempts] = useState(3);
   const [stateResult, setStateResult] = useState();
 
   const { pastries } = useSelector((store) => store.pastriesSliceReducer);
@@ -30,7 +32,7 @@ function GamePage() {
       setStateResult(false);
     }
 
-    setRemainingAttempts(remainingAttempts - 1);
+    dispatch(updateRemainingAttempts(remainingAttempts - 1));
   };
 
   const checkVictory = (results) => {
@@ -89,7 +91,13 @@ function GamePage() {
         </div>
       );
     } else if (stateResult == false) {
-      return <p>Dommage, vous avez perdu !</p>;
+      return (
+        <div>
+          <img src={imgDolphin} alt="dolphin" />
+          <br />
+          <p>Dommage, vous avez perdu !</p>
+        </div>
+      );
     } else {
       return null;
     }
@@ -106,29 +114,43 @@ function GamePage() {
     return results;
   };
 
+  const handleResetClick = (e) => {
+    dispatch(resetGame());
+    dispatch(updateRemainingAttempts(3));
+    setStateResult(true)
+  };
   return (
     <>
       <div className="container">
         <h1>Game</h1>
         <div className="cont-De">{renderImages()}</div>
+
+        {remainingAttempts == 0 && (
+          <button onClick={handleResetClick}>Relancer le jeux</button>
+        )}
+
+        {remainingAttempts != 0 && (
+          <button onClick={handleClick} disabled={remainingAttempts === 0}>
+            Lancer les dés ({remainingAttempts} essais restants)
+          </button>
+        )}
         <div>{printResultState()}</div>
-        <button onClick={handleClick} disabled={remainingAttempts === 0}>
-          Lancer les dés ({remainingAttempts} essais restants)
-        </button>
         <div>
           {pastries.length > 0 && (
             <div>
               <h2>Patisseries gagnées:</h2>
               <div className="pastries-list">
-                {pastries.map((pastrie) => (
-                  <div key={pastrie.id}>
-                    {CardPastries(
-                      pastrie.id,
-                      pastrie.name,
-                      pastrie.quantityWon
-                    )}
-                  </div>
-                ))}
+                {pastries
+                  .filter((pastrie) => pastrie.quantityWon > 0)
+                  .map((pastrie) => (
+                    <div key={pastrie.id}>
+                      {CardPastries(
+                        pastrie.id,
+                        pastrie.name,
+                        pastrie.quantityWon
+                      )}
+                    </div>
+                  ))}
               </div>
             </div>
           )}
