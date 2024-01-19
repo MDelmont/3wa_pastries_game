@@ -47,11 +47,11 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     updateEmail: (state, action) => {
-      console.log(action);
+   
       state.email = action.payload;
     },
     updatePassword: (state, action) => {
-      console.log(action.payload);
+  
       state.password = action.payload;
     },
   },
@@ -60,7 +60,7 @@ const loginSlice = createSlice({
       //
     });
     builder.addCase(loginWebSite.fulfilled, (state, action) => {
-      console.log(action);
+
       if (action.payload) {
         state.auth = true;
       } else {
@@ -72,7 +72,7 @@ const loginSlice = createSlice({
       //
     });
     builder.addCase(logoutWebSite.fulfilled, (state, action) => {
-      console.log(action.payload);
+  
       state.auth = false;
     });
   },

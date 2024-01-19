@@ -8,28 +8,45 @@ const AddPastrieForm = () => {
   const [pastryName, setPastryName] = useState("");
   const [pastryQuantity, setPastryQuantity] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewPastrie({pastryName, pastryQuantity, selectedImage}));
+    const promiseSucces = dispatch(
+      addNewPastrie({ pastryName, pastryQuantity, selectedImage })
+    );
+
+    promiseSucces.then((succes) => {
+      const id = succes?.payload?.pastrie?.id;
+
+      if (id) {
+        setMessage("Patisserie ajoutée avec succes");
+      } else {
+        setMessage("Un problème est survenu");
+      }
+    });
   };
 
   const handleQuantity = (e) => {
     setPastryQuantity(e.target.value);
+    setMessage(null);
   };
 
   const handleName = (e) => {
     setPastryName(e.target.value);
+    setMessage(null);
   };
 
   const handleImageUpload = (imageData) => {
     setSelectedImage(imageData);
+    setMessage(null);
   };
   return (
     <form className="admin-page" onSubmit={handleSubmit}>
       <div className="admin-form">
         <label>
+          {message && <span>{message}</span>}
           <span>Nom de la pâtisserie:</span>
           <input
             type="text"

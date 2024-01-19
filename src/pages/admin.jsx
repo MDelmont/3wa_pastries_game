@@ -11,7 +11,7 @@ function AdminPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state) => state.loginSliceReducer);
-  const { pastries } = useSelector((store) => store.pastriesSliceReducer);
+  const { pastries,needUpdate } = useSelector((store) => store.pastriesSliceReducer);
 
   useEffect(() => {
     if (!auth) navigate(`/login`);
@@ -19,7 +19,7 @@ function AdminPage() {
 
   useEffect(() => {
     dispatch(requestPastries());
-  }, []);
+  }, [needUpdate]);
 
   return (
     <div className="admin-page">
